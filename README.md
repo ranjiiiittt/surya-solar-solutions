@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+MVP- Minimal Viable Product
 
-## Getting Started
+1. Project Initialize + Tailwind + Shadcn/Ui + fonts
+   a. Create Next app with tailwind and typescript
+   npx create-next-app@latest
+   b. Remove Tailwind and install manually
 
-First, run the development server:
+c. fonts
+Use built-in next/fonts
+In app/layout.tsx
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+import { Inter, Montserrat } from 'next/font/google';
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+// 1) Configure each font and expose a CSS variable
+const inter = Inter({
+subsets: ['latin'],
+variable: '--font-inter', // 👈 custom css var
+display: 'swap', // removes FOIT
+});
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+const montserrat = Montserrat({
+subsets: ['latin'],
+variable: '--font-mont',
+weight: ['400', '600', '700'],
+display: 'swap',
+});
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+export const metadata = {
+title: 'SuryaRun Solar Solution',
+description: 'Independent solar consultation',
+};
 
-## Learn More
+export default function RootLayout({
+children,
+}: React.PropsWithChildren) {
+return (
 
-To learn more about Next.js, take a look at the following resources:
+<html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
+<body>{children}</body>
+</html>
+);
+}
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+main concept here is css variable.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Extend tailwind to use those variables
+tailwind.config.ts
 
-## Deploy on Vercel
+import type { Config } from 'tailwindcss';
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+const config: Config = {
+content: [
+'./app/**/*.{ts,tsx}',
+'./components/**/*.{ts,tsx}',
+'./content/**/*.{mdx,md}', // if you use MDX
+],
+theme: {
+extend: {
+fontFamily: {
+// default body text
+sans: ['var(--font-inter)', 'sans-serif'],
+// headings
+heading: ['var(--font-mont)', 'sans-serif'],
+},
+},
+},
+plugins: [require('@tailwindcss/typography')],
+};
+export default config;
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Apply fonts in CSS/utilities
+app/globals.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+h1, h2, h3, h4, h5 {
+@apply font-heading;
+}
+}
+
+Install tailwind version 3.4 because tailwind.config.ts is removed from new tailwind version
+npm i -D tailwindcss@^3.4 postcss@latest autoprefixer@latest
+npx tailwindcss init -p → creates tailwind.config.js + postcss.config.js
+
+Navbar
+npx shadcn@latest add button
+npx shadcn@latest add navigation-menu
+npx shadcn@latest add sheet
