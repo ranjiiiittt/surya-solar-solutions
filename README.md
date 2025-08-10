@@ -109,3 +109,7 @@ what does this code do?
 
 Deploying
 npm i -D @cloudflare/next-on-pages
+
+"build": "npx @cloudflare/next-on-pages@latest build",
+
+Cloudflare Dashboard → Pages → Create a project → Connect to Git → pick your repo.
