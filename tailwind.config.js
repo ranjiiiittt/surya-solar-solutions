@@ -14,6 +14,8 @@ module.exports = {
       },
       colors: {
         brand: "#1379fc",
+        "logo-green": "#095137",
+        "logo-blue": "#0567D0",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

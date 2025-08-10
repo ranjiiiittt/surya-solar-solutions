@@ -88,3 +88,21 @@ Navbar
 npx shadcn@latest add button
 npx shadcn@latest add navigation-menu
 npx shadcn@latest add sheet
+
+Adding your own color:
+need to configure in tailwind.config.js
+theme > extends > colors: {}
+You can directly use it in tailwind
+
+Adding Aceternity UI
+npm i motion clsx tailwind-merge
+
+What does we do in lib/utils.ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+return twMerge(clsx(inputs))
+}
+
+what does this code do?

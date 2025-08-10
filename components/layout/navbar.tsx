@@ -1,162 +1,71 @@
-// "use client";
-
-// import Link from "next/link";
-// import { FC, useState } from "react";
-// import { Menu, X } from "lucide-react";
-// import { Button } from "@/components/ui/button";
-// import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-// // import clsx from "clsx";
-// import Image from "next/image";
-
-// const navLinks = [
-//   { href: "#services", label: "Services" },
-//   { href: "#process", label: "Process" },
-//   { href: "#testimonials", label: "Testimonials" },
-//   { href: "#about", label: "About" },
-// ];
-// import AppointmentForm from "@/components/appointment-form";
-
-// <AppointmentForm triggerLabel="Book Free Consultation" />;
-
-// const Navbar: FC = () => {
-//   const [open, setOpen] = useState(false);
-
-//   return (
-//     <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur dark:bg-gray-950/80">
-//       <nav className="container-wrapper flex h-16 items-center justify-between">
-//         {/* ─ Logo ─────────────────────────────── */}
-//         <Link href="/" className="text-xl font-heading font-bold text-brand">
-//           <Image src="/logo.png" alt="logo" width={180} height={80} />
-//         </Link>
-
-//         {/* ─ Desktop links ───────────────────── */}
-//         <ul className="hidden gap-8 md:flex">
-//           {navLinks.map(({ href, label }) => (
-//             <li key={href}>
-//               <Link
-//                 href={href}
-//                 className="text-sm font-medium text-gray-700 transition-colors hover:text-brand dark:text-gray-300"
-//               >
-//                 {label}
-//               </Link>
-//             </li>
-//           ))}
-//         </ul>
-
-//         {/* ─ Desktop CTA ─────────────────────── */}
-//         <div className="hidden md:block">
-//           <Button size="lg" asChild>
-//             <Link href="#book">Book Free Consultation</Link>
-//           </Button>
-//         </div>
-
-//         {/* ─ Mobile hamburger / sheet ────────── */}
-//         <Sheet open={open} onOpenChange={setOpen}>
-//           <SheetTrigger asChild className="md:hidden">
-//             <Button variant="ghost" size="icon" className="p-2">
-//               {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-//               <span className="sr-only">Toggle navigation</span>
-//             </Button>
-//           </SheetTrigger>
-
-//           <SheetContent side="left" className="flex flex-col space-y-6 pt-24">
-//             {navLinks.map(({ href, label }) => (
-//               <Link
-//                 key={href}
-//                 href={href}
-//                 className="text-lg font-medium tracking-tight text-gray-700 hover:text-brand dark:text-gray-300"
-//                 onClick={() => setOpen(false)}
-//               >
-//                 {label}
-//               </Link>
-//             ))}
-//             <Button size="lg" asChild onClick={() => setOpen(false)}>
-//               <Link href="#book">Book Free Consultation</Link>
-//             </Button>
-//           </SheetContent>
-//         </Sheet>
-//       </nav>
-//     </header>
-//   );
-// };
-// export default Navbar;
-
 "use client";
 
 import Link from "next/link";
+import { BackgroundGradient } from "../ui/background-gradient";
+import { Button } from "../ui/button";
 import Image from "next/image";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import AppointmentForm from "@/components/appointment-form";
-
-const navLinks = [
-  { href: "#services", label: "Services" },
-  { href: "#process", label: "Process" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#about", label: "About" },
-];
+import { brand } from "../home/mainPage";
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur dark:bg-gray-950/80">
-      <nav className="container-wrapper flex h-16 items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="text-xl font-heading font-bold text-brand">
-          <Image src="/logo.png" alt="logo" width={180} height={80} />
-        </Link>
-
-        {/* Desktop links */}
-        <ul className="hidden gap-8 md:flex">
-          {navLinks.map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                className="text-sm font-medium text-gray-700 transition-colors hover:text-brand dark:text-gray-300"
+    <header className="sticky top-0 z-30 border-b border-white/10 bg-[rgba(15,39,64,0.9)] backdrop-blur shadow-md">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          <Link href="/" className="flex items-center gap-3">
+            <Image src="/logo-imagee.png" alt="logo" width={50} height={40} />
+            <div className="leading-tight">
+              <div className="text-lg font-semibold text-white">SuryaRun</div>
+              <div
+                className="text-[11px] tracking-wide font-medium"
+                style={{ color: brand.gold }}
               >
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+                SOLAR SOLUTIONS
+              </div>
+            </div>
+          </Link>
 
-        {/* Desktop CTA (opens AppointmentForm) */}
-        <div className="hidden md:block">
-          <AppointmentForm />
-        </div>
+          {/* Updated nav links */}
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-white/80">
+            <a href="#why" className="hover:text-white">
+              Why us
+            </a>
+            <a href="#home-solar" className="hover:text-white">
+              Home solar
+            </a>
+            <a href="#services" className="hover:text-white">
+              Services
+            </a>
+            <a href="#coverage" className="hover:text-white">
+              Coverage
+            </a>
+            <a href="#process" className="hover:text-white">
+              Process
+            </a>
+            <a href="#reviews" className="hover:text-white">
+              Reviews
+            </a>
+            <a href="#contact" className="hover:text-white">
+              Contact
+            </a>
+          </nav>
 
-        {/* Mobile hamburger */}
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="p-2">
-              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              <span className="sr-only">Toggle navigation</span>
+          <div className="hidden sm:flex items-center gap-2">
+            <Button className="px-4 bg-white text-black rounded-3xl hover:bg-white">
+              <a
+                href="tel:+19177547159"
+                aria-label="Call SuryaRun at (917) 754-7159"
+              >
+                (917) 754-7159
+              </a>
             </Button>
-          </SheetTrigger>
-
-          <SheetContent side="left" className="flex flex-col space-y-6 pt-24">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="text-lg font-medium tracking-tight text-gray-700 hover:text-brand dark:text-gray-300"
-                onClick={() => setOpen(false)}
-              >
-                {label}
-              </Link>
-            ))}
-
-            {/* Mobile CTA */}
-            <AppointmentForm
-              triggerLabel="Book Free Consultation"
-              onClick={() => setOpen(false)}
-            />
-          </SheetContent>
-        </Sheet>
-      </nav>
+            <BackgroundGradient>
+              <Button className="rounded-3xl">
+                <Link href="/booking">Book Free Consultation</Link>
+              </Button>
+            </BackgroundGradient>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

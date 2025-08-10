@@ -1,103 +1,112 @@
-// "use server";
-
-// import { Resend } from "resend";
-// import { z } from "zod";
-
-// const resend = new Resend(process.env.RESEND_API_KEY!);
-
-// const Lead = z.object({
-//   name: z.string().min(2),
-//   address: z.string().min(5),
-//   email: z.string().email(),
-//   phone: z.string().min(7),
-//   preferredDate: z.string(),
-//   preferredTime: z.string(),
-// });
-
-// export type LeadType = z.infer<typeof Lead>;
-
-// export async function submitAppointment(form: LeadType) {
-//   const parsed = Lead.safeParse(form);
-//   if (!parsed.success) {
-//     return { ok: false, error: "Validation failed on server" };
-//   }
-
-//   const { name, address, phone, email, preferredDate, preferredTime } =
-//     parsed.data;
-//   console.log(name, address, phone);
-//   const key = process.env.RESEND_API_KEY!;
-//   console.log("key", key);
-
-//   const { id } = await resend.emails.send({
-//     from: process.env.RESEND_FROM!,
-//     to: "ranjitsubedi88@gmail.com",
-//     subject: `New solar appointment – ${name}`,
-//     text: `
-// Name: ${name}
-// Address: ${address}
-// Email: ${email}
-// Phone: ${phone}
-// Preferred: ${preferredDate} at ${preferredTime}
-//     `.trim(),
-//   });
-//   console.log("id", id);
-
-//   await resend.emails.send({
-//     from: process.env.RESEND_FROM!,
-//     to: email, // visitor’s email
-//     subject: "Thanks for requesting a solar consultation!",
-//     text: `
-// Hi ${name},
-
-// Thanks for reaching out to SuryaRun Solar Solution!
-// We’ve received your preferred slot (${preferredDate} at ${preferredTime}).
-// We'll call you at ${phone} to confirm or reschedule if needed.
-
-// — Team SuryaRun
-//   `.trim(),
-//   });
-
-//   return { ok: true };
-// }
-
 "use server";
 
 import { Resend } from "resend";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
+const resend = new Resend(process.env.RESEND_API_KEY ?? "");
 
-export async function submitAppointment(form: {
-  name: string;
-  address: string;
-  email: string;
-  phone: string;
-  preferredDate: string;
-  preferredTime: string;
-}) {
+// Match the client form keys exactly
+const Lead = z.object({
+  firstName: z.string().min(2),
+  secondName: z.string().min(2),
+  street: z.string().min(5),
+  city: z.string().min(2),
+  zipCode: z.string().min(3),
+  email: z.string().email(),
+  phone: z.string().min(7),
+  preferredDate: z.string().min(1),
+  preferredTime: z.string().min(1),
+  averageMonthlyBill: z.enum([
+    "$0-99",
+    "$100-200",
+    "$200-300",
+    "$300-400",
+    "$400-500",
+    "$500+",
+  ]),
+  // Require checkbox to be true
+  agreeToContact: z
+    .boolean()
+    .refine((v) => v === true, { message: "You must agree to be contacted." }),
+});
+
+export type LeadType = z.infer<typeof Lead>;
+
+export async function submitAppointment(form: unknown) {
+  const parsed = Lead.safeParse(form);
+  if (!parsed.success) {
+    console.error("Validation error:", parsed.error.flatten());
+    return { ok: false, error: "Validation failed on server" };
+  }
+
+  const {
+    firstName,
+    secondName,
+    street,
+    city,
+    zipCode,
+    email,
+    phone,
+    preferredDate,
+    preferredTime,
+    averageMonthlyBill,
+  } = parsed.data;
+
+  const fullAddress = `${street}, ${city}, ${zipCode}`;
+
+  // Debug (remove in prod)
+  console.log("SUBMIT →", firstName, secondName, fullAddress, phone, email);
+
+  const from = process.env.RESEND_FROM ?? "";
+  const toOwner = process.env.RESEND_TO ?? "solarsaving.surya@gmail.com";
+
+  const ownerSubject = `New solar appointment – ${firstName} ${secondName}`;
+  const ownerText = `
+New Solar Consultation Request
+
+First Name: ${firstName}
+Second Name: ${secondName}
+Email: ${email}
+Phone: ${phone}
+Address: ${fullAddress}
+Average Bill: ${averageMonthlyBill}
+Preferred: ${preferredDate} at ${preferredTime}
+  `.trim();
+
+  const visitorSubject = "Thanks for booking your solar consultation!";
+  const visitorText = `
+Hi ${firstName},
+
+Thank you for booking a free solar consultation with SuryaRun Solar Solutions.
+
+We’ve received your preferred time: ${preferredDate} at ${preferredTime}, and your average monthly bill: ${averageMonthlyBill}.
+
+We'll call you at ${phone} to confirm and go over next steps.
+
+— Team SuryaRun
+  `.trim();
+
   try {
-    const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM!, // e.g. "Leads <onboarding@resend.dev>"
-      to: "ranjitsubedi108@gmail.com", // your inbox
-      subject: `New solar appointment – ${form.name}`,
-      text: `
-Name: ${form.name}
-Email: ${form.email}
-Address: ${form.address}
-Phone: ${form.phone}
-Preferred: ${form.preferredDate} at ${form.preferredTime}
-      `.trim(),
+    // Send to owner
+    await resend.emails.send({
+      from,
+      to: toOwner,
+      subject: ownerSubject,
+      text: ownerText,
     });
 
-    if (error) {
-      console.error("Resend error:", error);
-      return { ok: false, error: error.message };
-    }
+    // Send confirmation to visitor
+    await resend.emails.send({
+      from,
+      to: email,
+      subject: visitorSubject,
+      text: visitorText,
+    });
 
-    console.log("Resend message id:", data?.id); // ✅ should now log
     return { ok: true };
   } catch (err) {
-    console.error("Server error:", err);
-    return { ok: false, error: (err as Error).message };
+    console.error("Resend error:", err);
+    // Optional: include a safe message to show client
+    return { ok: false, error: "Email failed to send. Please try again." };
   }
 }
