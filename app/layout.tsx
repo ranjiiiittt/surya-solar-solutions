@@ -3,6 +3,7 @@ import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import { StickyBannerInfo } from "@/components/sticky-banner-info";
 
 // 1) Configure each font and expose a CSS variable
 const inter = Inter({
@@ -31,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${montserrat.variable} antialiased`}>
+        <StickyBannerInfo />
         <Navbar />
         {children}
         <Footer />

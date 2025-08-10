@@ -118,3 +118,5 @@ more configuration for build and deploy -> select framework -> save and deploy
 Custom domain -> add -> add your domain
 
 Experiment: push to main automatically deploys
+
+https://resend.com/domains/cf41f8df-58da-45c0-ba09-0430c58efab8
