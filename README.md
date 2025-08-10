@@ -112,4 +112,5 @@ npm i -D @cloudflare/next-on-pages
 
 "build": "npx @cloudflare/next-on-pages@latest build",
 
-Cloudflare Dashboard → Pages → Create a project → Connect to Git → pick your repo.
+Compute(Workers) on Sidebar and Workers and Pages
+Cloudflare Dashboard → Pages → Import from GitHub → Connect to Git → pick your repo.
