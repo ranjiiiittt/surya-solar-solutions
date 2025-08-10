@@ -110,7 +110,11 @@ what does this code do?
 Deploying
 npm i -D @cloudflare/next-on-pages
 
-"build": "npx @cloudflare/next-on-pages@latest build",
-
 Compute(Workers) on Sidebar and Workers and Pages
 Cloudflare Dashboard → Pages → Import from GitHub → Connect to Git → pick your repo.
+
+more configuration for build and deploy -> select framework -> save and deploy
+
+Custom domain -> add -> add your domain
+
+Experiment: push to main automatically deploys
