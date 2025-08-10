@@ -106,3 +106,6 @@ return twMerge(clsx(inputs))
 }
 
 what does this code do?
+
+Deploying
+npm i -D @cloudflare/next-on-pages
