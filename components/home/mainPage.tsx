@@ -1226,9 +1226,9 @@ export default function Landing() {
               </h1>
 
               <p className="mt-4 text-lg text-white/85">
-                We compare top providers and design the right system for your
-                roof—flat or slanted. Decades of expertise, transparent numbers,
-                and you choose if we move forward. No sales pressure, ever.
+                We work with the top solar company to design the perfect system
+                for your roof—flat or slanted. Transparent numbers, expert
+                guidance, and no pressure—ever.
               </p>
 
               <BackgroundGradient>
@@ -1246,7 +1246,7 @@ export default function Landing() {
                 <Check>
                   {" "}
                   <p className="text-white/85">
-                    Multi‑provider comparison for best fit
+                    Partnered with the top solar company{" "}
                   </p>
                 </Check>
                 <Check>
@@ -1279,7 +1279,7 @@ export default function Landing() {
                       value="Primary"
                       hint="Most projects are residential"
                     />
-                    <Stat label="Roof types" value="Flat • Slanted" />
+                    <Stat label="Roof types" value="Slanted" />
                   </div>
                 </CardSection>
               </Card>
@@ -1323,8 +1323,8 @@ export default function Landing() {
                 d: "Flat or slanted roofs, shade, snow‑load—engineered layouts that protect your roof.",
               },
               {
-                t: "Multi‑provider fit",
-                d: "We work with leading solar providers and match you to the best components and terms.",
+                t: "Top-rated partnership",
+                d: "We work with the top solar company to design the best system for your home—built for performance and savings.",
               },
               {
                 t: "Decades of expertise",
@@ -1350,10 +1350,10 @@ export default function Landing() {
           />
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {[
-              {
-                t: "Flat roofs",
-                d: "Ballasted or low‑penetration racking to keep your roof integrity intact.",
-              },
+              // {
+              //   t: "Flat roofs",
+              //   d: "Ballasted or low‑penetration racking to keep your roof integrity intact.",
+              // },
               {
                 t: "Slanted roofs",
                 d: "Low‑profile arrays, shade‑aware layouts, and neat conduit runs.",
@@ -1396,14 +1396,14 @@ export default function Landing() {
                   "Net‑metering where available",
                 ],
               },
-              {
-                t: "Commercial Solar",
-                points: [
-                  "Flat‑roof arrays & ballast",
-                  "Portfolio monitoring",
-                  "O&M contracts",
-                ],
-              },
+              // {
+              //   t: "Commercial Solar",
+              //   points: [
+              //     "Flat‑roof arrays & ballast",
+              //     "Portfolio monitoring",
+              //     "O&M contracts",
+              //   ],
+              // },
               {
                 t: "Battery Storage",
                 points: [
