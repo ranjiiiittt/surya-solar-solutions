@@ -1226,9 +1226,9 @@ export default function Landing() {
               </h1>
 
               <p className="mt-4 text-lg text-white/85">
-                We work with the top solar company to design the perfect system
-                for your roof—flat or slanted. Transparent numbers, expert
-                guidance, and no pressure—ever.
+                We work with one of the top solar company to design the perfect
+                system for your roof. Transparent numbers, expert guidance, and
+                no pressure—ever.
               </p>
 
               <BackgroundGradient>
@@ -1309,7 +1309,7 @@ export default function Landing() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             title="Consult‑first. Provider‑agnostic. Built around you."
-            subtitle="We guide you with honest answers, compare multiple providers, and design a solution that fits your roof, budget, and goals."
+            subtitle="We guide you with honest answers, and design a solution that fits your roof, budget, and goals."
             align="center"
           />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -1320,7 +1320,7 @@ export default function Landing() {
               },
               {
                 t: "Personalized design",
-                d: "Flat or slanted roofs, shade, snow‑load—engineered layouts that protect your roof.",
+                d: "Home roofs, shade, snow‑load—engineered layouts that protect your roof.",
               },
               {
                 t: "Top-rated partnership",
@@ -1540,11 +1540,11 @@ export default function Landing() {
               },
               {
                 t: "2) Roof & usage analysis",
-                d: "We assess your roof (flat/slanted), shade, and consumption to size your system.",
+                d: "We assess your roof, shade, and consumption to size your system.",
               },
               {
                 t: "3) Best‑fit proposal",
-                d: "We compare providers and financing to present clear, no‑pressure options.",
+                d: "We work with top solar provider and financing to present clear, no‑pressure options.",
               },
               {
                 t: "4) Install & support",
@@ -1636,11 +1636,11 @@ export default function Landing() {
             {[
               {
                 n: "Homeowner in Queens, NY",
-                q: "They told us honestly what made sense for our flat roof and what didn’t. Zero pressure—just facts.",
+                q: "They told us honestly what made sense for our roof and what didn’t. Zero pressure—just facts.",
               },
               {
                 n: "Homeowner in Edison, NJ",
-                q: "Compared options across providers and explained the numbers clearly. Install was neat and quick.",
+                q: "Compared bill with solar and without solar and explained the numbers clearly. Install was neat and quick.",
               },
               {
                 n: "Homeowner in Plano, TX",

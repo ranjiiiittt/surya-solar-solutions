@@ -36,17 +36,17 @@ export default function Book() {
             </h1>
 
             <p className="text-lg text-slate-700 max-w-2xl">
-              We compare multiple solar providers and design a personalized
-              system for your roof—flat or slanted. Honest answers, clear
-              savings math, and you choose if it makes sense.
+              We work with the top solar company and design a personalized
+              system for your roof. Honest answers, clear savings math, and you
+              choose if it makes sense.
             </p>
 
             {/* Bullets */}
             <ul className="space-y-3">
               {[
                 "Personalized savings report in 48 hours",
-                "Engineered design for flat or slanted roofs",
-                "Provider comparison so you don’t overpay or oversize",
+                "Engineered design for roofs",
+                "Right-sized system from the top solar company so you never overpay.",
                 "Long warranties (panels 25–30 yrs; brand-dependent)",
               ].map((item) => (
                 <li
