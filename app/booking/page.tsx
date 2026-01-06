@@ -19,7 +19,7 @@ export default function Book() {
           <section className="space-y-6">
             <div className="inline-flex flex-wrap gap-2">
               <span className="rounded-full bg-[#0F2740] text-white px-3 py-1 text-xs font-semibold">
-                No-pressure consultation
+                No-pressure Consultation
               </span>
               <span className="rounded-full bg-[#1F6FFF]/10 text-[#1F6FFF] px-3 py-1 text-xs font-semibold">
                 NY • NJ • TX • CA • CT

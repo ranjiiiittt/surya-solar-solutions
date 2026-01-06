@@ -6,6 +6,7 @@ import Footer from "@/components/layout/footer";
 // import { StickyBannerInfo } from "@/components/sticky-banner-info";
 
 // 1) Configure each font and expose a CSS variable
+//hi
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter", // 👈  custom css var
