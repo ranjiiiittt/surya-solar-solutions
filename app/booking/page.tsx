@@ -71,7 +71,7 @@ export default function Book() {
               </div>
               <div className="inline-flex items-center gap-2 rounded-xl border border-black/10 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm">
                 <Sparkles className="h-4 w-4 text-slate-600" />
-                Home-solar specialists
+                Home-solar Specialists
               </div>
             </div>
 
